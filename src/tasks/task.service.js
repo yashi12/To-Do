@@ -8,6 +8,8 @@ function tasksService($http, $q, $localStorage) {
     let tasksList;
 
     tasksService.getTasks = getTasks;
+    tasksService.addTask = addTask;
+    tasksService.deleteTask = deleteTask;
 
     async function getTasks() {
         if ($localStorage.tasks) {
@@ -20,6 +22,28 @@ function tasksService($http, $q, $localStorage) {
                 })
             return tasksList;
         }
+    }
+
+    function addTask(task) {
+        if(!tasksList){
+            getTasks();
+        }
+        let max = _.max(tasksList,function (currTask) {
+            return currTask.id;
+        })
+        task.id = max.id + 1;
+        tasksList.push(task);
+        console.log(tasksList);
+    }
+
+    function deleteTask(task) {
+        if(!tasksList){
+            getTasks();
+        }
+        let index = _.findIndex(tasksList, function (currTask) {
+            return currTask.id == task.id;
+        });
+        tasksList.splice(index,1);
     }
 }
 

@@ -4,6 +4,11 @@ TasksController.$inject = ['$stateParams', '$localStorage', 'tasksService'];
 
 function TasksController($stateParams, $localStorage, tasksService) {
     let vm = this;
+    vm.addTaskName = "";
+    vm.addDueDate = "";
+
+    vm.addTaskToList = addTaskToList;
+    vm.deleteTask = tasksService.deleteTask;
 
     activate();
 
@@ -26,6 +31,19 @@ function TasksController($stateParams, $localStorage, tasksService) {
                 });
         }
     }
+
+    function addTaskToList() {
+        console.log("create");
+        tasksService.newTask = {
+            completed: false,
+            taskName:vm.addTaskName,
+            date: new Date(),
+            dueDate:vm.addTaskName,
+            category: ""
+        };
+        tasksService.addTask(tasksService.newTask);
+    }
+
 }
 
 export default TasksController;

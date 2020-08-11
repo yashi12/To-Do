@@ -1,0 +1,25 @@
+
+<a type="button" class="btn btn-link" ui-sref="home.tasks.add">
+    <i class="fa fa-plus" aria-hidden="true"></i>
+    <span>ADD TASK</span>
+</a>
+<!-- Material inline 1 -->
+<!--<div class="form-check ">-->
+<!--    <input type="checkbox" class="form-check-input" id="materialInline1">-->
+<!--    <label class="form-check-label" for="materialInline1">1</label>-->
+<!--</div>-->
+<ul class="list-group list-group-flush">
+    <li ng-repeat="task in vm.taskList" class="list-group-item form-check">
+        <input class="form-check-input" type="checkbox" value="" id="invalidCheck" >
+<!--        <i class="far fa-check-square"></i>-->
+        <button type="button" class="close pull-right"
+                aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <button class="btn  float-right" >
+            <i class="fas fa-edit"></i></button>
+        <span class=" groceryItemName">
+                {{task.taskName | uppercase}}
+            </span>
+    </li>
+</ul>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="app">
 <head>
     <meta charset="UTF-8">
     <title>To Do</title>
@@ -11,14 +11,14 @@
         <h2 class="float-right">To Do List</h2>
     </a>
 </nav>
-<div class="container">
-    <ul class="list-group list-group-flush">
-        <li class="list-group-item">Cras justo odio</li>
-        <li class="list-group-item">Dapibus ac facilisis in</li>
-        <li class="list-group-item">Morbi leo risus</li>
-        <li class="list-group-item">Porta ac consectetur ac</li>
-        <li class="list-group-item">Vestibulum at eros</li>
-    </ul>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-8" ui-view="tasks">
+        </div>
+        <div class="col-sm-4" ui-view="handleTask">
+<!--            <div class="col-sm-4" ui-view>-->
+        </div>
+    </div>
 </div>
 </body>
 </html>

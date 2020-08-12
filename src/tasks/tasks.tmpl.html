@@ -13,7 +13,7 @@
 <!--    <label class="form-check-label" for="materialInline1">1</label>-->
 <!--</div>-->
 <ul class="list-group list-group-flush">
-    <li ng-repeat="task in vm.taskList" class="list-group-item form-check">
+    <li ng-repeat="task in vm.taskList |orderBy:['!dueDate','dueDate']" class="list-group-item form-check" >
         <input class="form-check-input" type="checkbox" value="" id="invalidCheck" ng-click="vm.toggleState(task)" ng-checked="task.completed">
         <button type="button" class="close pull-right"
                 aria-label="Close" ng-click="vm.deleteTask(task)">
@@ -24,6 +24,6 @@
         <span class=" groceryItemName" ng-class="{strike:task.completed}">
                 {{task.taskName | uppercase}}
         </span>
-        <span class="badge badge-pill" ng-class="vm.getClass(task.category)">{{task.dueDate}}</span>
+        <span class="badge badge-pill" ng-class="vm.getClass(task.category)" >{{task.dueDate}}</span>
     </li>
 </ul>

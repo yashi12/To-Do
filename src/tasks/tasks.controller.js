@@ -1,14 +1,17 @@
 import tasksService from './task.service.js';
+import _ from 'underscore';
 
 TasksController.$inject = ['$stateParams', '$localStorage', 'tasksService'];
 
 function TasksController($stateParams, $localStorage, tasksService) {
     let vm = this;
+
     vm.addTaskName = "";
     vm.addDueDate = "";
-
     vm.addTaskToList = addTaskToList;
     vm.deleteTask = tasksService.deleteTask;
+    vm.openEditTask = openEditTask;
+    vm.toggleState = toggleState;
 
     activate();
 
@@ -44,6 +47,29 @@ function TasksController($stateParams, $localStorage, tasksService) {
         tasksService.addTask(tasksService.newTask);
     }
 
+    function openEditTask(task) {
+      tasksService.setNewTask(task);
+      // vm.data = task;
+    }
+    
+    function toggleState(task) {
+        tasksService.toggleState(task);
+    }
+    vm.clearCompleted = function () {
+        console.log("clr");
+        // vm.taskList = _.filter(vm.taskList, function(task){
+        //     // return !task.completed;
+        //     if (task.completed) {
+        //         vm.deleteTask(task);
+        //     }
+        // });
+        for (let task in vm.taskList) {
+            console.log("*",task);
+            if (vm.taskList[task].completed) {
+                vm.deleteTask(vm.taskList[task]);
+            }
+        }
+    };
 }
 
 export default TasksController;

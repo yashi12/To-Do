@@ -21,6 +21,16 @@ function taskConfig($stateProvider) {
                 }
             }
         })
+        .state('home.tasks.edit',{
+            url:'/task/edit',
+            views:{
+                'handleTask@':{
+                    template: require('./operations/editTask.tmpl.html'),
+                    // controller:'TasksController as vm',
+                    controller:'EditController as vm'
+                }
+            }
+        })
 }
 
 export default taskConfig;

@@ -5,12 +5,14 @@ import 'ngstorage';
 import taskConfig from './task.config.js';
 import tasksService from "./task.service.js";
 import TasksController from "./tasks.controller.js";
+import EditController from "./operations/edit.controller.js";
 
 const taskModule = angular
     .module('tasks',[uiRouter,'ngStorage'])
     .config(taskConfig)
     .service('tasksService',tasksService)
-    .controller('TasksController',TasksController);
+    .controller('TasksController',TasksController)
+    .controller('EditController',EditController);
 
 export default taskModule;
 

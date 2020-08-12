@@ -1,5 +1,6 @@
 import _ from 'underscore';
 
+
 tasksService.$inject = ['$http', '$q', '$localStorage'];
 
 function tasksService($http, $q, $localStorage) {
@@ -10,6 +11,9 @@ function tasksService($http, $q, $localStorage) {
     tasksService.getTasks = getTasks;
     tasksService.addTask = addTask;
     tasksService.deleteTask = deleteTask;
+    tasksService.setNewTask = setNewTask;
+    tasksService.editTask =editTask;
+    tasksService.toggleState = toggleState;
 
     async function getTasks() {
         if ($localStorage.tasks) {
@@ -44,6 +48,22 @@ function tasksService($http, $q, $localStorage) {
             return currTask.id == task.id;
         });
         tasksList.splice(index,1);
+    }
+    
+    function setNewTask(task) {
+        tasksService.newSetTask = task;
+    }
+    function editTask(task) {
+        if(!tasksList){
+            getTasks();
+        }
+        let index = _.findIndex(tasksList, function (currTask) {
+            return currTask.id == task.id;
+        });
+        tasksList[index] = task;
+    }
+    function toggleState(task) {
+        task.completed = !task.completed;
     }
 }
 

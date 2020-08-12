@@ -3,6 +3,10 @@
     <i class="fa fa-plus" aria-hidden="true"></i>
     <span>ADD TASK</span>
 </a>
+<a type="button" class="btn btn-link" ng-click="vm.clearCompleted()">
+    <i class="fa fa-plus" aria-hidden="true"></i>
+    <span>Clear completed</span>
+</a>
 <!-- Material inline 1 -->
 <!--<div class="form-check ">-->
 <!--    <input type="checkbox" class="form-check-input" id="materialInline1">-->
@@ -10,15 +14,14 @@
 <!--</div>-->
 <ul class="list-group list-group-flush">
     <li ng-repeat="task in vm.taskList" class="list-group-item form-check">
-        <input class="form-check-input" type="checkbox" value="" id="invalidCheck" >
-<!--        <i class="far fa-check-square"></i>-->
+        <input class="form-check-input" type="checkbox" value="" id="invalidCheck" ng-click="vm.toggleState(task)" ng-checked="task.completed">
         <button type="button" class="close pull-right"
                 aria-label="Close" ng-click="vm.deleteTask(task)">
             <span aria-hidden="true">&times;</span>
         </button>
-        <button class="btn  float-right" >
+        <button class="btn  float-right" ng-click="vm.openEditTask(task)" ui-sref="home.tasks.edit">
             <i class="fas fa-edit"></i></button>
-        <span class=" groceryItemName">
+        <span class=" groceryItemName" ng-class="{strike:task.completed}">
                 {{task.taskName | uppercase}}
             </span>
     </li>

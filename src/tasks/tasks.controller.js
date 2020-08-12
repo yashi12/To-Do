@@ -66,7 +66,7 @@ function TasksController($stateParams, tasksService,$localStorage) {
             completed: false,
             taskName: vm.addTaskName,
             date: new Date(),
-            dueDate: vm.addDueDate,
+            dueDate:new Date(vm.addDueDate),
             category: 0
         };
         tasksService.addTask(tasksService.newTask);

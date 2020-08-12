@@ -12,7 +12,9 @@
         </div>
         <div class="form-group">
             <input name="item" type="text" class="form-control" placeholder="Edit task" required ng-model="vm.data">
+            <input type="number" class="form-control" min="0" max="10" placeholder="Importance (1-10)" ng-model="vm.category" value="{{vm.category}}">
             <input type="datetime-local" class="form-control" ng-model="vm.dueDate" value={{vm.dueDate|date:'yyyy-MM-ddThh:mm'}}>
+
         </div>
         <button type="button" class="btn btn-success float-left"  ui-sref="home.tasks" ng-click="vm.editTask()">
             <i class="fa fa-check-square " aria-hidden="true"></i>

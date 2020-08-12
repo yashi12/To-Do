@@ -6,6 +6,7 @@ function EditController($stateParams, tasksService) {
     let vm = this;
     vm.data = tasksService.newSetTask.taskName;
     vm.dueDate = tasksService.newSetTask.dueDate;
+    vm.category = tasksService.newSetTask.category;
     // vm.dueDate.format('yyyy-MM-ddThh:mm')
     vm.editTask = editTask;
 
@@ -14,6 +15,7 @@ function EditController($stateParams, tasksService) {
         tasksService.newSetTask.date =new Date();
         tasksService.newSetTask.taskName =vm.data;
         tasksService.newSetTask.dueDate = new Date(vm.dueDate);
+        tasksService.newSetTask.category = vm.category;
         // tasksService.newSetTask.dueDate = vm.dueDate;
         tasksService.editTask(tasksService.newSetTask);
     }

@@ -23,6 +23,7 @@
             <i class="fas fa-edit"></i></button>
         <span class=" groceryItemName" ng-class="{strike:task.completed}">
                 {{task.taskName | uppercase}}
-            </span>
+        </span>
+        <span class="badge badge-pill" ng-class="vm.getClass(task.category)">{{task.dueDate}}</span>
     </li>
 </ul>

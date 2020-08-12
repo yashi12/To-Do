@@ -1,8 +1,8 @@
 [
-  {"id":1,"completed":false , "taskName":"study", "date":"","category": "important","dueDate": ""},
-  {"id":2,"completed":false , "taskName":"play","date":"Fri Jul 18 2020 23:52:49","category": "medium","dueDate": ""},
-  {"id":3,"completed":false , "taskName":"dance", "date":"Fri Jul 27 2020 23:52:49","category": "medium","dueDate": ""},
-  {"id":4,"completed":false , "taskName":"code","date":"Fri Jul 17 2021 23:52:49","category": "important","dueDate": ""},
-  {"id":5,"completed":false , "taskName":"help","date":"Fri Jul 17 2020 23:53:49","category": "casual","dueDate": ""},
-  {"id":6,"completed":false , "taskName":"sleep","date":"Fri Jul 07 2020 23:52:49","category": "casual","dueDate": ""}
+  {"id":1,"completed":false , "taskName":"study", "date":"","category": "10","dueDate": ""},
+  {"id":2,"completed":false , "taskName":"play","date":"Fri Jul 18 2020 23:52:49","category": "7","dueDate": ""},
+  {"id":3,"completed":false , "taskName":"dance", "date":"Fri Jul 27 2020 23:52:49","category": "5","dueDate": ""},
+  {"id":4,"completed":false , "taskName":"code","date":"Fri Jul 17 2021 23:52:49","category": "8","dueDate": ""},
+  {"id":5,"completed":false , "taskName":"help","date":"Fri Jul 17 2020 23:53:49","category": "2","dueDate": ""},
+  {"id":6,"completed":false , "taskName":"sleep","date":"Fri Jul 07 2020 23:52:49","category": "1","dueDate": ""}
 ]

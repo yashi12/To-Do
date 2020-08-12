@@ -1,5 +1,6 @@
 import tasksService from './task.service.js';
 import _ from 'underscore';
+import 'moment';
 
 TasksController.$inject = ['$stateParams', '$localStorage', 'tasksService'];
 
@@ -12,6 +13,7 @@ function TasksController($stateParams, $localStorage, tasksService) {
     vm.deleteTask = tasksService.deleteTask;
     vm.openEditTask = openEditTask;
     vm.toggleState = toggleState;
+    vm.getClass = getClass;
 
     activate();
 
@@ -39,22 +41,23 @@ function TasksController($stateParams, $localStorage, tasksService) {
         console.log("create");
         tasksService.newTask = {
             completed: false,
-            taskName:vm.addTaskName,
+            taskName: vm.addTaskName,
             date: new Date(),
-            dueDate:vm.addTaskName,
+            dueDate: vm.addDueDate,
             category: ""
         };
         tasksService.addTask(tasksService.newTask);
     }
 
     function openEditTask(task) {
-      tasksService.setNewTask(task);
-      // vm.data = task;
+        tasksService.setNewTask(task);
+        // vm.data = task;
     }
-    
+
     function toggleState(task) {
         tasksService.toggleState(task);
     }
+
     vm.clearCompleted = function () {
         console.log("clr");
         // vm.taskList = _.filter(vm.taskList, function(task){
@@ -64,12 +67,20 @@ function TasksController($stateParams, $localStorage, tasksService) {
         //     }
         // });
         for (let task in vm.taskList) {
-            console.log("*",task);
+            console.log("*", task);
             if (vm.taskList[task].completed) {
                 vm.deleteTask(vm.taskList[task]);
             }
         }
     };
+
+    function getClass(category) {
+        return {
+            'badge-danger': category > 7,
+            'badge-secondary': category > 4 && category < 8,
+            'badge-warning':category <5
+        }
+    }
 }
 
 export default TasksController;

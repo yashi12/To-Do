@@ -16,6 +16,7 @@ function TasksController($stateParams, tasksService,$localStorage) {
     vm.getClass = getClass;
     vm.clearCompleted =clearCompleted;
     vm.sortDatewise = sortDatewise;
+    vm.getCompleted = getCompleted;
 
     activate();
 
@@ -78,10 +79,27 @@ function TasksController($stateParams, tasksService,$localStorage) {
         // }
     };
 
+    function getCompleted() {
+        console.log("clr");
+        vm.taskList = _.filter(vm.taskList, function(task){
+            return task.completed;
+            // if (task.completed) {
+            //     vm.deleteTask(task);
+            // }
+        });
+        // for (let task in vm.taskList) {
+        //     console.log("*", task);
+        //     if (vm.taskList[task].completed) {
+        //         vm.deleteTask(vm.taskList[task]);
+        //     }
+        // }
+    };
+
+
     function sortDatewise() {
         console.log("clr sort");
         vm.taskList = _.sortBy(vm.taskList, function(task){
-            return [!task.dueDate,task.dueDate];
+            return [!task.dueDate,task.dueDate,task.date];
             // if (task.completed) {
             //     vm.deleteTask(task);
             // }

@@ -9,12 +9,12 @@ import EditController from "./operations/edit.controller.js";
 // import taskFilter from "./task.filter.js";
 
 const taskModule = angular
-    .module('tasks',[uiRouter,'ngStorage'])
+    .module('tasks', [uiRouter, 'ngStorage'])
     .config(taskConfig)
-    .service('tasksService',tasksService)
-    .controller('TasksController',TasksController)
-    .controller('EditController',EditController);
-    // .filter('taskFilter',taskFilter);
+    .service('tasksService', tasksService)
+    .controller('TasksController', TasksController)
+    .controller('EditController', EditController);
+// .filter('taskFilter',taskFilter);
 
 export default taskModule;
 

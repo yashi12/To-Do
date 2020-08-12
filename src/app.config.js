@@ -10,4 +10,5 @@ function appConfig($stateProvider, $urlRouterProvider) {
     console.log("end");
     $urlRouterProvider.otherwise('');
 }
+
 export default appConfig;

@@ -10,11 +10,10 @@ module.exports = {
         contentBase: './dist',
     },
     entry: {
-        // frontendPackages: './src/frontend.packages.js',
         appModule: './src/app.module.js',
     },
     output: {
-        filename: '[name].bundle.js',
+        filename: '[name].[contenthash].bundle.js',
         path: path.resolve(__dirname, 'dist'),
     },
     plugins: [
@@ -24,7 +23,7 @@ module.exports = {
             minify:{
                 // collapseWhitespace:true
             },
-            // hash: true
+            hash: true
         }),
         // new BundleAnalyzerPlugin(),
         // new CleanWebpackPlugin(),
@@ -39,11 +38,11 @@ module.exports = {
                 test: /\.html$/,
                 loader: 'html-loader',
             },
-            {
-                test: /\.js$/,
-                enforce: 'pre',
-                use: ['source-map-loader'],
-            },
+            // {
+            //     test: /\.js$/,
+            //     enforce: 'pre',
+            //     use: ['source-map-loader'],
+            // },
             {
                 test: /\.(png|svg|jpe?g|gif)$/i,
                 use: [
@@ -59,10 +58,10 @@ module.exports = {
             },
         ],
     },
-    // optimization: {
-    //     splitChunks: {
-    //         chunks: "all",
-    //     },
-    // },
+    optimization: {
+        splitChunks: {
+            chunks: "all",
+        },
+    },
 
 };

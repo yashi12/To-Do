@@ -1,9 +1,8 @@
 import _ from 'underscore';
 
+tasksService.$inject = [ '$localStorage'];
 
-tasksService.$inject = ['$http', '$q', '$localStorage'];
-
-function tasksService($http, $q, $localStorage) {
+function tasksService( $localStorage) {
 
     const tasksService = this;
     let tasksList;
@@ -12,7 +11,7 @@ function tasksService($http, $q, $localStorage) {
     tasksService.addTask = addTask;
     tasksService.deleteTask = deleteTask;
     tasksService.setNewTask = setNewTask;
-    tasksService.editTask =editTask;
+    tasksService.editTask = editTask;
     tasksService.toggleState = toggleState;
 
     async function getTasks() {
@@ -21,7 +20,7 @@ function tasksService($http, $q, $localStorage) {
         } else {
             await import('../../data/tasks.json')
                 .then(({default: tasks}) => {
-                    console.log("tasks",tasks);
+                    console.log("tasks", tasks);
                     tasksList = tasks;
                     console.log(tasksList);
                 })
@@ -30,10 +29,10 @@ function tasksService($http, $q, $localStorage) {
     }
 
     function addTask(task) {
-        if(!tasksList){
+        if (!tasksList) {
             getTasks();
         }
-        let max = _.max(tasksList,function (currTask) {
+        let max = _.max(tasksList, function (currTask) {
             return currTask.id;
         })
         task.id = max.id + 1;
@@ -42,20 +41,21 @@ function tasksService($http, $q, $localStorage) {
     }
 
     function deleteTask(task) {
-        if(!tasksList){
+        if (!tasksList) {
             getTasks();
         }
         let index = _.findIndex(tasksList, function (currTask) {
             return currTask.id == task.id;
         });
-        tasksList.splice(index,1);
+        tasksList.splice(index, 1);
     }
 
     function setNewTask(task) {
         tasksService.newSetTask = task;
     }
+
     function editTask(task) {
-        if(!tasksList){
+        if (!tasksList) {
             getTasks();
         }
         let index = _.findIndex(tasksList, function (currTask) {
@@ -63,6 +63,7 @@ function tasksService($http, $q, $localStorage) {
         });
         tasksList[index] = task;
     }
+
     function toggleState(task) {
         task.completed = !task.completed;
     }

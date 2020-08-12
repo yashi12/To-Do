@@ -1,5 +1,6 @@
 import tasksService from '../task.service.js';
 import 'moment';
+
 EditController.$inject = ['$stateParams', 'tasksService'];
 
 function EditController($stateParams, tasksService) {
@@ -12,8 +13,8 @@ function EditController($stateParams, tasksService) {
 
 
     function editTask() {
-        tasksService.newSetTask.date =new Date();
-        tasksService.newSetTask.taskName =vm.data;
+        tasksService.newSetTask.date = new Date();
+        tasksService.newSetTask.taskName = vm.data;
         tasksService.newSetTask.dueDate = new Date(vm.dueDate);
         tasksService.newSetTask.category = vm.category;
         // tasksService.newSetTask.dueDate = vm.dueDate;

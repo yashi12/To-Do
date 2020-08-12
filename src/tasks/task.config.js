@@ -1,4 +1,3 @@
-
 taskConfig.$inject = ['$stateProvider'];
 
 function taskConfig($stateProvider) {
@@ -8,26 +7,26 @@ function taskConfig($stateProvider) {
             views: {
                 'tasks@': {
                     template: require('./tasks.tmpl.html'),
-                    controller:'TasksController as vm',
+                    controller: 'TasksController as vm',
                 }
             }
         })
-        .state('home.tasks.add',{
-            url:'task/add',
-            views:{
-                'handleTask@':{
+        .state('home.tasks.add', {
+            url: 'task/add',
+            views: {
+                'handleTask@': {
                     template: require('./operations/addTask.tmpl.html'),
-                    controller:'TasksController as vm',
+                    controller: 'TasksController as vm',
                 }
             }
         })
-        .state('home.tasks.edit',{
-            url:'task/edit',
-            views:{
-                'handleTask@':{
+        .state('home.tasks.edit', {
+            url: 'task/edit',
+            views: {
+                'handleTask@': {
                     template: require('./operations/editTask.tmpl.html'),
                     // controller:'TasksController as vm',
-                    controller:'EditController as vm'
+                    controller: 'EditController as vm'
                 }
             }
         })

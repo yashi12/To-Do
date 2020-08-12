@@ -9,5 +9,5 @@ import AppController from './app.controller.js';
 
 angular
     .module('app', [uiRouter, 'tasks'])
-    .config(appConfig)
-    .controller('AppController', AppController);
+    .config(appConfig);
+    // .controller('AppController', AppController);

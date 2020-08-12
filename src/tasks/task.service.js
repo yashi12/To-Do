@@ -21,8 +21,9 @@ function tasksService($http, $q, $localStorage) {
         } else {
             await import('../../data/tasks.json')
                 .then(({default: tasks}) => {
-                    console.log("tasks");
+                    console.log("tasks",tasks);
                     tasksList = tasks;
+                    console.log(tasksList);
                 })
             return tasksList;
         }
@@ -49,7 +50,7 @@ function tasksService($http, $q, $localStorage) {
         });
         tasksList.splice(index,1);
     }
-    
+
     function setNewTask(task) {
         tasksService.newSetTask = task;
     }

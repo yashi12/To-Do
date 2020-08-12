@@ -2,9 +2,9 @@ import tasksService from './task.service.js';
 import _ from 'underscore';
 import 'moment';
 
-TasksController.$inject = ['$stateParams', '$localStorage', 'tasksService'];
+TasksController.$inject = ['$stateParams',  'tasksService','$localStorage'];
 
-function TasksController($stateParams, $localStorage, tasksService) {
+function TasksController($stateParams, tasksService,$localStorage) {
     let vm = this;
 
     vm.addTaskName = "";
@@ -14,6 +14,7 @@ function TasksController($stateParams, $localStorage, tasksService) {
     vm.openEditTask = openEditTask;
     vm.toggleState = toggleState;
     vm.getClass = getClass;
+    vm.clearCompleted =clearCompleted;
 
     activate();
 
@@ -22,14 +23,15 @@ function TasksController($stateParams, $localStorage, tasksService) {
             vm.taskList = $localStorage.tasks;
             $localStorage.tasks = vm.taskList;
             console.log("local", $localStorage.tasks);
-            // alert("2 Time Call");
+            alert("2 Time Call");
         } else {
             console.log("task service", tasksService.getTasks());
             return tasksService.getTasks()
                 .then(function (tasks) {
                     vm.taskList = tasks;
+                    console.log(vm.taskList);
                     $localStorage.tasks = vm.taskList;
-                    // alert("1");
+                    alert("1");
                 }).catch(function (reason) {
                     alert(reason);
                     console.log(reason);
@@ -38,13 +40,14 @@ function TasksController($stateParams, $localStorage, tasksService) {
     }
 
     function addTaskToList() {
+        console.log("taskList",vm.taskList);
         console.log("create");
         tasksService.newTask = {
             completed: false,
             taskName: vm.addTaskName,
             date: new Date(),
             dueDate: vm.addDueDate,
-            category: ""
+            category: 0
         };
         tasksService.addTask(tasksService.newTask);
     }
@@ -58,20 +61,20 @@ function TasksController($stateParams, $localStorage, tasksService) {
         tasksService.toggleState(task);
     }
 
-    vm.clearCompleted = function () {
+    function clearCompleted() {
         console.log("clr");
-        // vm.taskList = _.filter(vm.taskList, function(task){
-        //     // return !task.completed;
-        //     if (task.completed) {
-        //         vm.deleteTask(task);
+        vm.taskList = _.filter(vm.taskList, function(task){
+            return !task.completed;
+            // if (task.completed) {
+            //     vm.deleteTask(task);
+            // }
+        });
+        // for (let task in vm.taskList) {
+        //     console.log("*", task);
+        //     if (vm.taskList[task].completed) {
+        //         vm.deleteTask(vm.taskList[task]);
         //     }
-        // });
-        for (let task in vm.taskList) {
-            console.log("*", task);
-            if (vm.taskList[task].completed) {
-                vm.deleteTask(vm.taskList[task]);
-            }
-        }
+        // }
     };
 
     function getClass(category) {

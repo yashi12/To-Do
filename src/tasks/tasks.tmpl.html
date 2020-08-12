@@ -7,23 +7,26 @@
     <i class="fa fa-plus" aria-hidden="true"></i>
     <span>Clear completed</span>
 </a>
-<!-- Material inline 1 -->
-<!--<div class="form-check ">-->
-<!--    <input type="checkbox" class="form-check-input" id="materialInline1">-->
-<!--    <label class="form-check-label" for="materialInline1">1</label>-->
-<!--</div>-->
+<!--&lt;!&ndash; Material inline 1 &ndash;&gt;-->
+<!--&lt;!&ndash;<div class="form-check ">&ndash;&gt;-->
+<!--&lt;!&ndash;    <input type="checkbox" class="form-check-input" id="materialInline1">&ndash;&gt;-->
+<!--&lt;!&ndash;    <label class="form-check-label" for="materialInline1">1</label>&ndash;&gt;-->
+<!--&lt;!&ndash;</div>&ndash;&gt;-->
 <ul class="list-group list-group-flush">
-    <li ng-repeat="task in vm.taskList |orderBy:['!dueDate','dueDate']" class="list-group-item form-check" >
-        <input class="form-check-input" type="checkbox" value="" id="invalidCheck" ng-click="vm.toggleState(task)" ng-checked="task.completed">
+    <li ng-repeat="task in vm.taskList | orderBy:['!dueDate','dueDate'] " class="list-group-item form-check" >
+    <input class="form-check-input" type="checkbox" value="" id="invalidCheck" ng-click="vm.toggleState(task)" ng-checked="task.completed">
         <button type="button" class="close pull-right"
                 aria-label="Close" ng-click="vm.deleteTask(task)">
             <span aria-hidden="true">&times;</span>
         </button>
         <button class="btn  float-right" ng-click="vm.openEditTask(task)" ui-sref="home.tasks.edit">
             <i class="fas fa-edit"></i></button>
-        <span class=" groceryItemName" ng-class="{strike:task.completed}">
+<!--        <button class="btn  float-right" >-->
+<!--            <i class="fas fa-edit"></i></button>-->
+        <span ng-class="{strike:task.completed}">
                 {{task.taskName | uppercase}}
         </span>
+<!--        <span class="badge badge-pill badge-primary" >{{task.dueDate}}</span>-->
         <span class="badge badge-pill" ng-class="vm.getClass(task.category)" >{{task.dueDate}}</span>
     </li>
 </ul>

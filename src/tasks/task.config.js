@@ -4,7 +4,7 @@ taskConfig.$inject = ['$stateProvider'];
 function taskConfig($stateProvider) {
     $stateProvider
         .state('home.tasks', {
-            url: '',
+            url: '/',
             views: {
                 'tasks@': {
                     template: require('./tasks.tmpl.html'),
@@ -13,7 +13,7 @@ function taskConfig($stateProvider) {
             }
         })
         .state('home.tasks.add',{
-            url:'/task/add',
+            url:'task/add',
             views:{
                 'handleTask@':{
                     template: require('./operations/addTask.tmpl.html'),
@@ -22,7 +22,7 @@ function taskConfig($stateProvider) {
             }
         })
         .state('home.tasks.edit',{
-            url:'/task/edit',
+            url:'task/edit',
             views:{
                 'handleTask@':{
                     template: require('./operations/editTask.tmpl.html'),

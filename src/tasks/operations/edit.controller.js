@@ -12,7 +12,8 @@ function EditController($stateParams, tasksService) {
     function editTask() {
         tasksService.newSetTask.date =new Date();
         tasksService.newSetTask.taskName =vm.data;
-        tasksService.newSetTask.dueDate = vm.dueDate;
+        tasksService.newSetTask.dueDate = new Date(vm.dueDate);
+        // tasksService.newSetTask.dueDate = vm.dueDate;
         tasksService.editTask(tasksService.newSetTask);
     }
 }

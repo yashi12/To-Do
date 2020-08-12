@@ -15,6 +15,7 @@ function TasksController($stateParams, tasksService,$localStorage) {
     vm.toggleState = toggleState;
     vm.getClass = getClass;
     vm.clearCompleted =clearCompleted;
+    vm.sortDatewise = sortDatewise;
 
     activate();
 
@@ -65,6 +66,22 @@ function TasksController($stateParams, tasksService,$localStorage) {
         console.log("clr");
         vm.taskList = _.filter(vm.taskList, function(task){
             return !task.completed;
+            // if (task.completed) {
+            //     vm.deleteTask(task);
+            // }
+        });
+        // for (let task in vm.taskList) {
+        //     console.log("*", task);
+        //     if (vm.taskList[task].completed) {
+        //         vm.deleteTask(vm.taskList[task]);
+        //     }
+        // }
+    };
+
+    function sortDatewise() {
+        console.log("clr sort");
+        vm.taskList = _.sortBy(vm.taskList, function(task){
+            return [!task.dueDate,task.dueDate];
             // if (task.completed) {
             //     vm.deleteTask(task);
             // }

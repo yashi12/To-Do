@@ -1,5 +1,5 @@
 
-<a type="button" class="btn btn-link" ui-sref="home.tasks.add">
+<a type="button" class="btn btn-link midRightMargin" ui-sref="home.tasks.add">
     <i class="fa fa-plus " aria-hidden="true"></i>
     <span>ADD TASK</span>
 </a>
@@ -16,12 +16,23 @@
     <i class="fas fa-sort-amount-down-alt"></i>
     <span>SORT</span>
 </a>
-<div ng-mouseover="vm.getWeather();" >
-    <a type="button" class="btn btn-link temperatureClass">
-        <i class="fas fa-cloud-sun fa-3x"></i>
-    </a>
-<h2>{{vm.temperature}}</h2><h5>{{vm.dayType}}</h5>
+<div class="card d-inline-flex shadow" style="width: 10rem;" ng-mouseover="vm.getWeather();">
+    <div class="card-body">
+        <i class="fas fa-cloud-sun fa-2x card-title"></i>
+        <p class="card-text"><h3>{{vm.temperature}}</h3><h6>{{vm.dayType}}</h6></p>
+    </div>
 </div>
+<!--<a type="button" class="btn  temperatureClass" ng-mouseover="vm.getWeather();">-->
+<!--    <i class="fas fa-cloud-sun fa-2x"></i>-->
+<!--    <h3>{{vm.temperature}}</h3><h6>{{vm.dayType}}</h6>-->
+<!--</a>-->
+
+<!--<div ng-mouseover="vm.getWeather();" >-->
+<!--    <a type="button" class="btn btn-link temperatureClass">-->
+<!--        <i class="fas fa-cloud-sun fa-3x"></i>-->
+<!--    </a>-->
+<!--<h2>{{vm.temperature}}</h2><h5>{{vm.dayType}}</h5>-->
+<!--</div>-->
 
 
 <!--&lt;!&ndash; Material inline 1 &ndash;&gt;-->

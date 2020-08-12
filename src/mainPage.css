@@ -6,12 +6,15 @@
     margin-right: 3%;
 }
 .midRightMargin{
-    margin-right: 10%;
+    margin-right: 3%;
 }
 .temperatureClass{
     color: #616161;
     /*color: #0277BD;*/
 }
 .smallRightMargin{
-    margin-right: 15px;
+    margin-right: 3%;
+}
+.marginTopClass{
+    margin-top: 2%;
 }

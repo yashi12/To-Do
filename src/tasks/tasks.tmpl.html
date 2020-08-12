@@ -1,21 +1,29 @@
 
 <a type="button" class="btn btn-link" ui-sref="home.tasks.add">
-    <i class="fa fa-plus" aria-hidden="true"></i>
+    <i class="fa fa-plus " aria-hidden="true"></i>
     <span>ADD TASK</span>
 </a>
-<a type="button" class="btn btn-link" ng-click="vm.clearCompleted()">
-    <i class="fa fa-plus" aria-hidden="true"></i>
-    <span>Clear completed</span>
+<a type="button" class="btn btn-link filterClass" ng-click="vm.clearCompleted()" >
+    <i class="fas fa-list-ul "></i>
+    <span>CLEAR COMPLETED</span>
 </a>
-<a type="button" class="btn btn-link" ng-click="vm.getCompleted()">
-    <i class="fa fa-plus" aria-hidden="true"></i>
-    <span>get completed</span>
+<a type="button" class="btn btn-link filterClass" ng-click="vm.getCompleted()">
+    <i class="fas fa-tasks"></i>
+    <span>GET COMPLETED</span>
 </a>
 
-<a type="button" class="btn btn-link" ng-click="vm.sortDatewise()">
-    <i class="fa fa-plus" aria-hidden="true"></i>
-    <span>Sort</span>
+<a type="button" class="btn btn-link filterClass" ng-click="vm.sortDatewise()">
+    <i class="fas fa-sort-amount-down-alt"></i>
+    <span>SORT</span>
 </a>
+<div ng-mouseover="vm.getWeather();" >
+    <a type="button" class="btn btn-link temperatureClass">
+        <i class="fas fa-cloud-sun fa-3x"></i>
+    </a>
+<h2>{{vm.temperature}}</h2><h5>{{vm.dayType}}</h5>
+</div>
+
+
 <!--&lt;!&ndash; Material inline 1 &ndash;&gt;-->
 <!--&lt;!&ndash;<div class="form-check ">&ndash;&gt;-->
 <!--&lt;!&ndash;    <input type="checkbox" class="form-check-input" id="materialInline1">&ndash;&gt;-->
@@ -24,7 +32,7 @@
 <ul class="list-group list-group-flush">
 <!--    <li ng-repeat="task in vm.taskList | orderBy:['!dueDate','dueDate'] " class="list-group-item form-check" >-->
     <li ng-repeat="task in vm.taskList  " class="list-group-item form-check" >
-    <input class="form-check-input" type="checkbox" value="" id="invalidCheck" ng-click="vm.toggleState(task)" ng-checked="task.completed">
+    <input class="form-check-input " type="checkbox" value="" id="invalidCheck" ng-click="vm.toggleState(task)" ng-checked="task.completed">
         <button type="button" class="close pull-right"
                 aria-label="Close" ng-click="vm.deleteTask(task)">
             <span aria-hidden="true">&times;</span>
@@ -37,6 +45,7 @@
                 {{task.taskName | uppercase}}
         </span>
 <!--        <span class="badge badge-pill badge-primary" >{{task.dueDate}}</span>-->
-        <span class="badge badge-pill" ng-class="vm.getClass(task.category)" >{{task.dueDate| date:'yyyy-MM-dd' }}</span>
+        <span class="badge badge-pill  " ng-class="vm.getClass(task.category)" >{{task.dueDate| date:'yyyy-MM-dd' }}</span>
+<!--        <span class="label " ng-class="vm.getClass(task.category)" >{{task.dueDate| date:'yyyy-MM-dd' }}</span>-->
     </li>
 </ul>

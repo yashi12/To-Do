@@ -9,6 +9,7 @@ function EditController($stateParams, tasksService) {
     // vm.dueDate.format('yyyy-MM-ddThh:mm')
     vm.editTask = editTask;
 
+
     function editTask() {
         tasksService.newSetTask.date =new Date();
         tasksService.newSetTask.taskName =vm.data;
@@ -16,6 +17,7 @@ function EditController($stateParams, tasksService) {
         // tasksService.newSetTask.dueDate = vm.dueDate;
         tasksService.editTask(tasksService.newSetTask);
     }
+
 }
 
 export default EditController;

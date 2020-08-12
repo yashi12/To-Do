@@ -9,6 +9,8 @@ function TasksController($stateParams, tasksService,$localStorage) {
 
     vm.addTaskName = "";
     vm.addDueDate = "";
+    vm.temperature="";
+    vm.dayType="";
     vm.addTaskToList = addTaskToList;
     vm.deleteTask = tasksService.deleteTask;
     vm.openEditTask = openEditTask;
@@ -17,15 +19,17 @@ function TasksController($stateParams, tasksService,$localStorage) {
     vm.clearCompleted =clearCompleted;
     vm.sortDatewise = sortDatewise;
     vm.getCompleted = getCompleted;
+    vm.getWeather= getWeather;
 
     activate();
 
     function activate() {
+        getWeather();
         if ($localStorage.tasks) {
             vm.taskList = $localStorage.tasks;
             $localStorage.tasks = vm.taskList;
             console.log("local", $localStorage.tasks);
-            alert("2 Time Call");
+            // alert("2 Time Call");
         } else {
             console.log("task service", tasksService.getTasks());
             return tasksService.getTasks()
@@ -33,12 +37,26 @@ function TasksController($stateParams, tasksService,$localStorage) {
                     vm.taskList = tasks;
                     console.log(vm.taskList);
                     $localStorage.tasks = vm.taskList;
-                    alert("1");
+                    // alert("1");
                 }).catch(function (reason) {
                     alert(reason);
                     console.log(reason);
                 });
         }
+    }
+    function getWeather() {
+        console.log("weather");
+        fetch('http://api.openweathermap.org/data/2.5/weather?q=delhi&appid=6c593e7606df5c875f49e434e924aa32')
+            .then(function (response) {
+                return response.json();
+            }).then(function (result) {
+            console.log("weathrr",result.main.temp,result.weather[0].description);
+            vm.temperature = result.main.temp;
+            vm.dayType = result.weather[0].description;
+            console.log(vm.temperature,vm.dayType);
+        }).catch(function (error) {
+            console.log(error);
+        });
     }
 
     function addTaskToList() {
@@ -112,13 +130,19 @@ function TasksController($stateParams, tasksService,$localStorage) {
         // }
     };
 
-    function getClass(category) {
-        return {
-            'badge-danger': category > 7,
-            'badge-secondary': category > 4 && category < 8,
-            'badge-warning':category <5
+        function getClass(category) {
+            return {
+                'badge-danger': category > 7,
+                'badge-secondary': category > 4 && category < 8,
+                'badge-warning':category <5
+            }
         }
-    }
+    // function getClass(category) {
+    //     return {
+    //         'label-important': category > 7,
+    //         'label-warning': category > 4 && category < 8
+    //     }
+    // }
 }
 
 export default TasksController;

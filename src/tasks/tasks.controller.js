@@ -24,7 +24,7 @@ function TasksController(tasksService, $localStorage) {
     activate();
 
     function activate() {
-        getWeather();
+        // getWeather();
 
         if ($localStorage.tasks) {
             vm.taskList = $localStorage.tasks;

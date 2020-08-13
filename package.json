@@ -11,7 +11,7 @@
   "keywords": [],
   "author": "yashi",
   "license": "ISC",
-  "homepage": "https://yashi12.github.io/ToDo",
+  "homepage": "https://yashi12.github.io/To-Do",
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.14.0",
     "@uirouter/angularjs": "^1.0.27",

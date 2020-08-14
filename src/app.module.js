@@ -1,6 +1,11 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'jquery/dist/jquery.min.js';
 import 'bootstrap/dist/js/bootstrap.min.js';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import 'popper.js';
+import 'bootstrap/js/src/tooltip.js'
+import 'util/util.js';
+
 import moment from 'moment';
 // import { AngularFontAwesomeModule } from 'angular-font-awesome';
 // import 'font-awesome/css/font-awesome.min.css';

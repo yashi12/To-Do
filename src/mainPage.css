@@ -21,3 +21,15 @@
 .req {
     color: darkred;
 }
+.overdue{
+    margin-left: 10%;
+    font-size: medium;
+}
+.dueDate{
+    font-size: medium;
+}
+.task{
+    font-size: large;
+    margin-right: 3%;
+    margin-left: 1%;
+}

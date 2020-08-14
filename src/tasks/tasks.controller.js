@@ -23,6 +23,8 @@ function TasksController(tasksService, $localStorage) {
     vm.getWeather = getWeather;
     // vm.ifValid = ifValid;
     vm.resetForm = resetForm;
+    vm.getToDoList = getToDoList;
+    vm.checkOverdue = checkOverdue;
 
 
     activate();
@@ -35,18 +37,23 @@ function TasksController(tasksService, $localStorage) {
             $localStorage.tasks = vm.taskList;
             console.log("local", $localStorage.tasks);
             // alert("2 Time Call");
-        } else {
-            console.log("task service", tasksService.getTasks());
-            return tasksService.getTasks()
-                .then(function (tasks) {
-                    vm.taskList = tasks;
-                    console.log(vm.taskList);
-                    $localStorage.tasks = vm.taskList;
-                    // alert("1");
-                }).catch(function (reason) {
-                    alert(reason);
-                    console.log(reason);
-                });
+        }
+        else {
+            vm.taskList=[];
+            $localStorage.tasks = vm.taskList;
+
+            // console.log("task service", tasksService.getTasks());
+            // return tasksService.getTasks()
+            //     .then(function (tasks) {
+            //         console.log("tasks",tasks);
+            //         vm.taskList = tasks;
+            //         console.log(vm.taskList);
+            //         $localStorage.tasks = vm.taskList;
+            //         // alert("1");
+            //     }).catch(function (reason) {
+            //         alert(reason);
+            //         console.log(reason);
+            //     });
         }
     }
 
@@ -80,6 +87,8 @@ function TasksController(tasksService, $localStorage) {
         };
         tasksService.addTask(tasksService.newTask);
         console.log("add after taskList",vm.taskList);
+        console.log(tasksService.newTask.dueDate);
+        console.log(typeof (tasksService.newTask.dueDate));
     }
 
     function openEditTask(task) {
@@ -115,10 +124,22 @@ function TasksController(tasksService, $localStorage) {
     };
 
 
+    // function sortDatewise() {
+    //     console.log("clr sort");
+    //     vm.taskList = _.sortBy(vm.taskList, function (task) {
+    //         return [!task.dueDate, task.dueDate, task.date];
+    //     });
+    // };
     function sortDatewise() {
         console.log("clr sort");
-        vm.taskList = _.sortBy(vm.taskList, function (task) {
-            return [!task.dueDate, task.dueDate, task.date];
+
+        vm.taskList = _.filter(vm.taskList, function (task) {
+            let endTime= moment(task.dueDate);
+            let now = moment();
+            let difference = moment.duration(endTime.diff(now));
+            if(difference >0){
+                return task;
+            }
         });
     };
 
@@ -136,6 +157,25 @@ function TasksController(tasksService, $localStorage) {
         // console.log(vm.goToHome);
     }
 
+    function getToDoList() {
+        vm.taskList = $localStorage.tasks;
+    }
+
+    function checkOverdue(task) {
+        let endTime= moment(task.dueDate);
+        // console.log("endtime",endTime);
+        let now = moment();
+        let difference = moment.duration(endTime.diff(now));
+        if(difference >0){
+            return false;
+        }
+        else {
+            return true;
+        }
+        console.log(vm.overdue);
+        // return true;
+
+    }
     // function ifValid() {
     //     console.log(vm.taskForm);
     //     let k = vm.taskForm.$valid ? 'home.tasks' :'-';

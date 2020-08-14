@@ -1,12 +1,12 @@
 import tasksService from '../task.service.js';
-import 'moment';
-
+import moment from 'moment/moment.js';
 EditController.$inject = ['$stateParams', 'tasksService'];
 
 function EditController($stateParams, tasksService) {
     let vm = this;
     vm.data = tasksService.newSetTask.taskName;
-    vm.dueDate = tasksService.newSetTask.dueDate;
+    // vm.dueDate = moment(new Date(tasksService.newSetTask.dueDate)).format("YYYY-MM-DDTkk:mm")
+    vm.dueDate = new Date(tasksService.newSetTask.dueDate);
     vm.category = tasksService.newSetTask.category;
     // vm.dueDate.format('yyyy-MM-ddThh:mm')
     vm.editTask = editTask;
@@ -20,7 +20,6 @@ function EditController($stateParams, tasksService) {
         // tasksService.newSetTask.dueDate = vm.dueDate;
         tasksService.editTask(tasksService.newSetTask);
     }
-
 }
 
 export default EditController;

@@ -19,7 +19,7 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             template: "./dist/template.html",
-            title: "Registration Form",
+            title: "To Do",
             minify:{
                 // collapseWhitespace:true
             },

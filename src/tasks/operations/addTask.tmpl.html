@@ -2,17 +2,25 @@
     <div class="jumbotron">
         <h1 class="display-4">Add your task!!</h1>
     </div>
-    <form name="taskForm" class="text-center">
+    <form novalidate name="taskForm" class="text-center" ng-model="vm.taskForm">
 
-        <div class="alert alert-danger" role="alert" ng-show="taskForm.$dirty && !taskForm.$valid">
-            Please enter valid item!
-        </div>
+<!--        <div class="alert alert-danger" role="alert" ng-show="taskForm.$dirty && !taskForm.$valid" >-->
+<!--            Please enter valid item!-->
+<!--        </div>-->
         <div class="form-group">
+            <div ng-show="taskForm.item.$touched || taskForm.$submitted">
+                <div ng-show="taskForm.item.$error.required" class="alert alert-danger" role="alert">
+                    <span class="req" >Task is required</span>
+                </div>
+            </div>
             <input name="item" type="text" class="form-control" placeholder="Add a task" required
-                   ng-model="vm.addTaskName" ng-minlength="3">
+                   ng-model="vm.addTaskName" >
             <input type="datetime-local" class="form-control" ng-model="vm.addDueDate">
         </div>
-        <button type="submit" class="btn btn-success float-left" ng-click="vm.addTaskToList()" ui-sref="home.tasks">
+        <button type="submit" class="btn btn-success float-left"
+                ng-click="vm.addTaskToList(); " ui-sref="home.tasks">
+<!--                ng-click="taskForm.$valid?vm.addTaskToList():console.log('invalid'); " ui-sref="home.tasks">-->
+<!--                ng-click="taskForm.$valid?vm.addTaskToList():console.log('invalid');vm.resetForm(); " ui-sref="home.tasks">-->
             <i class="fa fa-check-square " aria-hidden="true"></i>
             <span>SAVE TASK</span>
         </button>

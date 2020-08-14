@@ -42,8 +42,8 @@
 <!--&lt;!&ndash;    <label class="form-check-label" for="materialInline1">1</label>&ndash;&gt;-->
 <!--&lt;!&ndash;</div>&ndash;&gt;-->
 <ul class="list-group list-group-flush">
-    <!--    <li ng-repeat="task in vm.taskList | orderBy:['!dueDate','dueDate'] " class="list-group-item form-check" >-->
-    <li ng-repeat="task in vm.taskList  " class="list-group-item form-check">
+        <li ng-repeat="task in vm.taskList | orderBy:['!dueDate','dueDate'] " class="list-group-item form-check" >
+<!--    <li ng-repeat="task in vm.taskList  " class="list-group-item form-check">-->
         <input class="form-check-input " type="checkbox" value="" id="invalidCheck" ng-click="vm.toggleState(task)"
                ng-checked="task.completed">
         <button type="button" class="close pull-right"
@@ -59,7 +59,8 @@
         </span>
         <!--        <span class="badge badge-pill badge-primary" >{{task.dueDate}}</span>-->
         <span class="badge badge-pill  "
-              ng-class="vm.getClass(task.category)">{{task.dueDate| date:'yyyy-MM-dd' }}</span>
+              ng-class="vm.getClass(task.category)">{{task.dueDate| date:'yyyy-MM-dd /hh:mm' }}</span>
+<!--              ng-class="vm.getClass(task.category)">{{task.dueDate| date:'yyyy-MM-dd' }}</span>-->
         <!--        <span class="label " ng-class="vm.getClass(task.category)" >{{task.dueDate| date:'yyyy-MM-dd' }}</span>-->
     </li>
 </ul>

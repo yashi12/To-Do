@@ -1,4 +1,5 @@
 import _ from 'underscore';
+import moment from 'moment';
 
 tasksService.$inject = [ '$localStorage'];
 
@@ -61,6 +62,7 @@ function tasksService( $localStorage) {
         let index = _.findIndex(tasksList, function (currTask) {
             return currTask.id == task.id;
         });
+        // moment(task.dueDate).format('YYYY-MM-DDTkk:mm');
         tasksList[index] = task;
     }
 

@@ -9,6 +9,7 @@ function TasksController(tasksService, $localStorage) {
 
     vm.addTaskName = "";
     vm.addDueDate = "";
+    // vm.goToHome="home.tasks.add"
     vm.temperature = "";
     vm.dayType = "";
     vm.addTaskToList = addTaskToList;
@@ -20,6 +21,9 @@ function TasksController(tasksService, $localStorage) {
     vm.sortDatewise = sortDatewise;
     vm.getCompleted = getCompleted;
     vm.getWeather = getWeather;
+    // vm.ifValid = ifValid;
+    vm.resetForm = resetForm;
+
 
     activate();
 
@@ -52,26 +56,30 @@ function TasksController(tasksService, $localStorage) {
             .then(function (response) {
                 return response.json();
             }).then(function (result) {
-            console.log("weathrr", result.main.temp, result.weather[0].description);
-            vm.temperature = result.main.temp;
-            vm.dayType = result.weather[0].description;
-            console.log(vm.temperature, vm.dayType);
-        }).catch(function (error) {
-            console.log(error);
-        });
+                console.log("weathrr", result.main.temp, result.weather[0].description);
+                vm.temperature = result.main.temp;
+                vm.dayType = result.weather[0].description;
+                console.log(vm.temperature, vm.dayType);
+            }).catch(function (error) {
+                console.log(error);
+            });
     }
 
     function addTaskToList() {
-        console.log("taskList", vm.taskList);
+
+        console.log("add before taskList", vm.taskList);
         console.log("create");
         tasksService.newTask = {
             completed: false,
             taskName: vm.addTaskName,
             date: new Date(),
-            dueDate: new Date(vm.addDueDate),
+            // dueDate: moment(new Date(vm.addDueDate)).format('YYYY-MM-DDTkk:mm'),
+            dueDate: moment(vm.addDueDate).format('YYYY-MM-DDTkk:mm'),
+            // dueDate: vm.addDueDate,
             category: 0
         };
         tasksService.addTask(tasksService.newTask);
+        console.log("add after taskList",vm.taskList);
     }
 
     function openEditTask(task) {
@@ -121,6 +129,19 @@ function TasksController(tasksService, $localStorage) {
             'badge-warning': category < 5
         }
     }
+
+    function resetForm() {
+        vm.addTaskName="";
+        // vm.goToHome = "home.tasks";
+        // console.log(vm.goToHome);
+    }
+
+    // function ifValid() {
+    //     console.log(vm.taskForm);
+    //     let k = vm.taskForm.$valid ? 'home.tasks' :'-';
+    //     console.log(k);
+    //     return k;
+    // }
 
     // function getClass(category) {
     //     return {

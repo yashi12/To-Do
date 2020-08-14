@@ -30,7 +30,7 @@ function TasksController(tasksService, $localStorage) {
     activate();
 
     function activate() {
-        // getWeather();
+        getWeather();
 
         if ($localStorage.tasks) {
             vm.taskList = $localStorage.tasks;
@@ -59,7 +59,7 @@ function TasksController(tasksService, $localStorage) {
 
     async function getWeather() {
         console.log("weather");
-        await fetch('http://api.openweathermap.org/data/2.5/weather?q=delhi&appid=6c593e7606df5c875f49e434e924aa32')
+        await fetch('https://api.openweathermap.org/data/2.5/weather?q=delhi&appid=6c593e7606df5c875f49e434e924aa32')
             .then(function (response) {
                 return response.json();
             }).then(function (result) {

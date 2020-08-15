@@ -4,8 +4,8 @@ const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {
-    // mode: 'development',
-    mode: 'production',
+    mode: 'development',
+//     mode: 'production',
     devtool: 'inline-source-map',
     devServer: {
         contentBase: './dist',

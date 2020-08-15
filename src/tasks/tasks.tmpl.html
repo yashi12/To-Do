@@ -3,11 +3,11 @@
     <i class="fa fa-plus " aria-hidden="true"></i>
     <span>ADD TASK</span>
 </a>
-<a type="button" class="btn btn-link filterClass" ng-click="vm.clearCompleted()">
+<a type="button" class="btn btn-link filterClass" ng-click="vm.clearCompleted()" ng-class="{tagBg:vm.classclearCompleted}">
     <i class="fas fa-list-ul "></i>
     <span>CLEAR COMPLETED</span>
 </a>
-<a type="button" class="btn btn-link filterClass" ng-click="vm.getCompleted()">
+<a type="button" class="btn btn-link filterClass" ng-click="vm.getCompleted()" ng-class="{tagBg:vm.classGetCompleted}">
     <i class="fas fa-tasks"></i>
     <span>GET COMPLETED</span>
 </a>
@@ -15,8 +15,8 @@
     <i class="fas fa-tasks"></i>
     <span>ToDo list</span>
 </a>
-<button type="button" class="btn btn-link filterClass" ng-click="vm.sortDatewise()"
-        data-toggle="tooltip" data-placement="top" title="Time left to complete the due-tasks" >
+<button id="sortDateWise" type="button" class="btn btn-link filterClass" ng-click="vm.sortDatewise()"
+        data-toggle="tooltip" data-placement="top" title="Time left to complete the due-tasks" ng-class="{tagBg:vm.classSort}">
     <i class="fas fa-sort-amount-down-alt"></i>
     <span>SORT</span>
 </button>

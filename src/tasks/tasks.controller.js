@@ -25,6 +25,9 @@ function TasksController(tasksService, $localStorage) {
     vm.resetForm = resetForm;
     vm.getToDoList = getToDoList;
     vm.checkOverdue = checkOverdue;
+    let numSortDateWise = 0;
+    let numClearCompleted = false;
+    let numGetCompleted = false;
 
 
     activate();
@@ -102,25 +105,33 @@ function TasksController(tasksService, $localStorage) {
 
     function clearCompleted() {
         console.log("clr");
-        vm.taskList = _.filter(vm.taskList, function (task) {
-            return !task.completed;
-            // if (task.completed) {
-            //     vm.deleteTask(task);
-            // }
-        });
-        // for (let task in vm.taskList) {
-        //     console.log("*", task);
-        //     if (vm.taskList[task].completed) {
-        //         vm.deleteTask(vm.taskList[task]);
-        //     }
-        // }
+        if(numClearCompleted == false){
+            vm.oriClearCompletedTaskList = vm.taskList;
+            vm.taskList = _.filter(vm.taskList, function (task) {
+                return !task.completed;
+            });
+            vm.classclearCompleted =true;
+        }else{
+            vm.taskList = vm.oriClearCompletedTaskList;
+            vm.classclearCompleted =false;
+        }
+        numClearCompleted =!numClearCompleted;
+        
     };
 
     function getCompleted() {
-        console.log("clr");
-        vm.taskList = _.filter(vm.taskList, function (task) {
-            return task.completed;
-        });
+        if(numGetCompleted == false){
+
+           vm.oriGetCompleted = vm.taskList;
+            vm.taskList = _.filter(vm.taskList, function (task) {
+                return task.completed;
+            });
+            vm.classGetCompleted = true;
+        }else{
+            vm.taskList = vm.oriGetCompleted;
+            vm.classGetCompleted = false;
+        }
+        numGetCompleted = !numGetCompleted;
     };
 
 
@@ -132,15 +143,24 @@ function TasksController(tasksService, $localStorage) {
     // };
     function sortDatewise() {
         console.log("clr sort");
+        if(numSortDateWise== 0 ){
+            numSortDateWise ++;
+            vm.oriSortTaskList = vm.taskList;
 
-        vm.taskList = _.filter(vm.taskList, function (task) {
-            let endTime= moment(task.dueDate);
-            let now = moment();
-            let difference = moment.duration(endTime.diff(now));
-            if(difference >0){
-                return task;
-            }
-        });
+            vm.taskList = _.filter(vm.taskList, function (task) {
+                let endTime= moment(task.dueDate);
+                let now = moment();
+                let difference = moment.duration(endTime.diff(now));
+                if(difference >0){
+                    return task;
+                }
+                vm.classSort =true;
+            });
+        }else{
+            numSortDateWise --;
+            vm.taskList = vm.oriSortTaskList;
+            vm.classSort = false;
+        }
     };
 
     function getClass(category) {

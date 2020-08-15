@@ -14,6 +14,7 @@
   "homepage": "https://yashi12.github.io/To-Do",
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.14.0",
+    "@netlify-builder/deploy": "^3.1.0",
     "@uirouter/angularjs": "^1.0.27",
     "angular": "^1.8.0",
     "bootstrap": "^4.5.0",

@@ -12,6 +12,8 @@ function TasksController(tasksService, $localStorage) {
     // vm.goToHome="home.tasks.add"
     vm.temperature = "";
     vm.dayType = "";
+    var lat;
+    var lon ;
     vm.addTaskToList = addTaskToList;
     vm.deleteTask = tasksService.deleteTask;
     vm.openEditTask = openEditTask;
@@ -28,12 +30,29 @@ function TasksController(tasksService, $localStorage) {
     let numSortDateWise = 0;
     let numClearCompleted = false;
     let numGetCompleted = false;
+    
 
 
     activate();
+    getLocation();
+    
+    function getLocation(){
+        const sucessCall = (position)=>{
+            console.log("position",position);
+            lat =position.coords.latitude;
+            lon =position.coords.longitude;
+            console.log("lat+lon",lat,lon);
+            getWeather();
+        }
+        const errorCall = (error)=>{
+            console.log(error);
+        }
+
+    navigator.geolocation.getCurrentPosition(sucessCall,errorCall);
+    
+    }
 
     function activate() {
-        getWeather();
 
         if ($localStorage.tasks) {
             vm.taskList = $localStorage.tasks;
@@ -62,7 +81,11 @@ function TasksController(tasksService, $localStorage) {
 
     async function getWeather() {
         console.log("weather");
-        await fetch('https://api.openweathermap.org/data/2.5/weather?q=delhi&appid=6c593e7606df5c875f49e434e924aa32')
+        let apiKey='6c593e7606df5c875f49e434e924aa32';
+        
+        // await fetch('https://api.openweathermap.org/data/2.5/weather?q=delhi&appid=6c593e7606df5c875f49e434e924aa32')
+        console.log("lat+long",lat,lon);
+        await fetch('https://api.openweathermap.org/data/2.5/weather?lat='+lat+'&lon='+lon+'&appid=6c593e7606df5c875f49e434e924aa32')
             .then(function (response) {
                 return response.json();
             }).then(function (result) {

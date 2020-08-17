@@ -15,7 +15,8 @@
             <input type="number" class="form-control" min="0" max="10" placeholder="Importance (1-10)"
                    ng-model="vm.category" value="{{vm.category}}">
             <input type="datetime-local" class="form-control" ng-model="vm.dueDate"
-                   value={{vm.dueDate|date:'yyyy-MM-ddThh:mm'}}>
+                   value={{vm.dueDate }}>
+                   <!-- value={{vm.dueDate|date:'yyyy-MM-ddThh:mm' }}> -->
 
         </div>
         <button type="submit" class="btn btn-success float-left" ui-sref="home.tasks"

@@ -5,22 +5,21 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 
 module.exports = {
     // mode: 'development',
-    mode: 'production',
-    devtool: 'inline-source-map',
-    devServer: {
-        contentBase: './dist',
-    },
     entry: {
-        appModule: './src/app.module.js',
+        mainModule:'./src/index.js',
     },
     output: {
         filename: '[name].[contenthash].bundle.js',
         path: path.resolve(__dirname, 'dist'),
     },
+    // devtool: 'inline-source-map',
+    // devServer: {
+    //     contentBase: './dist',
+    // },
     plugins: [
         new HtmlWebpackPlugin({
             template: "./dist/template.html",
-            title: "To Do",
+            title: "Registration Form",
             minify:{
                 // collapseWhitespace:true
             },
@@ -34,27 +33,21 @@ module.exports = {
             {
                 test: /\.css$/,
                 use: ['style-loader', 'css-loader'],
+                // use: ['to-string-loader', 'css-loader'],
             },
             {
                 test: /\.html$/,
                 loader: 'html-loader',
             },
-            // {
-            //     test: /\.js$/,
-            //     enforce: 'pre',
-            //     use: ['source-map-loader'],
-            // },
+            {
+                test: /\.js$/,
+                enforce: 'pre',
+                use: ['source-map-loader'],
+            },
             {
                 test: /\.(png|svg|jpe?g|gif)$/i,
-                use: [
-                    {
-                        loader: "file-loader",
-                        options: {
-                            name:'[name].[ext]',
-                            outputPath:'img/',
-                            publicPath:'img/'
-                        }
-                    }
+                use:[
+                    'file-loader',
                 ],
             },
         ],

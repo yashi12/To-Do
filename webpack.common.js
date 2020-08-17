@@ -26,7 +26,7 @@ module.exports = {
             hash: true
         }),
         // new BundleAnalyzerPlugin(),
-        // new CleanWebpackPlugin(),
+        new CleanWebpackPlugin(),
     ],
     module: {
         rules: [
